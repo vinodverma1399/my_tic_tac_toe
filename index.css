@@ -49,10 +49,13 @@ justify-content: center;
 
 .container_new {
 padding: 40vmin;
+text-align: center;
+justify-content: center;
 }
 
 p {
     font-size: 10vmin;
+    
 }
 
 .hide {

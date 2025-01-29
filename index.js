@@ -5,6 +5,7 @@ let Winner_container=document.querySelector(".container_new");
 let msg=document.querySelector("#msg");
 
 let turnO=true;
+let count=0;
 
 const winPattern=[
     [0,1,2],
@@ -23,21 +24,21 @@ box.forEach((boxV)=>{
            let a= boxV.innerText="X";
              console.log(a);
              turnO=false;
-             
+             count=count+1; 
          }else{
            let b=boxV.innerText="O"; 
              console.log(b);
              turnO=true;
-             
+             count=count+1; 
     
          }
          boxV.disabled=true;
-        console.log("box was clicked ")
-         checkwinner();
+        console.log("box was clicked "); 
+        checkwinner();
+         
     })
-
+   
 })
-
 
 
 const checkwinner=()=>{
@@ -51,7 +52,12 @@ const checkwinner=()=>{
             if(pat1val===pat2val && pat1val===pat3val){
                 console.log("winner",pat1val);
                 showWinner(pat1val);
+               
                 
+            }else if(count===9){
+                count=0;
+                console.log("Match Draw")
+                Start_New_game();
             }
             
         }
@@ -59,7 +65,7 @@ const checkwinner=()=>{
 }
 
 const showWinner=(winner)=>{
-
+    count=0;
     msg.innerText=` Congratulations Winner is ${winner} `;
     Winner_container.classList.remove("hide");
     boxDisable();
@@ -81,6 +87,7 @@ const enablebox=()=>{
 }
 
 const resetGame=()=>{
+    count=0;
     turnO=true;
     enablebox();
     Winner_container.classList.add("hide"); 
@@ -93,7 +100,12 @@ newGameBtn.addEventListener("click",resetGame);
 
 
 
-
+const Start_New_game=()=>{
+   
+    msg.innerText=` Match Draw `;
+    Winner_container.classList.remove("hide");
+    newGameBtn.addEventListener("click",resetGame);
+};
 
 
  
